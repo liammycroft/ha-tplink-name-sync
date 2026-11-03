@@ -1,0 +1,78 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "TP-Link Name Sync",
+        "description": "Push the names you set in Home Assistant to the TP-Link/Kasa/Tapo device aliases. Start with dry run enabled to preview changes.",
+        "data": {
+          "dry_run": "Dry run (log what would change, write nothing)",
+          "auto_sync": "Sync automatically when a device is renamed",
+          "include_parents": "Also sync parent devices (e.g. the strip itself)"
+        }
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Only a single instance is allowed."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "TP-Link Name Sync options",
+        "data": {
+          "dry_run": "Dry run (log what would change, write nothing)",
+          "auto_sync": "Sync automatically when a device is renamed",
+          "include_parents": "Also sync parent devices (e.g. the strip itself)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "button": {
+      "sync_all": {
+        "name": "Sync all names"
+      }
+    }
+  },
+  "exceptions": {
+    "not_loaded": {
+      "message": "TP-Link Name Sync is not set up."
+    },
+    "not_tplink_device": {
+      "message": "Device {device_id} is not a TP-Link device."
+    },
+    "empty_alias": {
+      "message": "The alias must not be empty."
+    }
+  },
+  "services": {
+    "set_alias": {
+      "name": "Set alias",
+      "description": "Write an alias to a TP-Link device (honours the dry run option unless overridden).",
+      "fields": {
+        "device_id": {
+          "name": "Device",
+          "description": "The TP-Link device (or child socket) to rename."
+        },
+        "alias": {
+          "name": "Alias",
+          "description": "The new alias to store on the device."
+        },
+        "dry_run": {
+          "name": "Dry run",
+          "description": "Override the dry run option for this call."
+        }
+      }
+    },
+    "sync_all": {
+      "name": "Sync all names",
+      "description": "Push every custom Home Assistant device name to the matching TP-Link alias.",
+      "fields": {
+        "dry_run": {
+          "name": "Dry run",
+          "description": "Override the dry run option for this call."
+        }
+      }
+    }
+  }
+}

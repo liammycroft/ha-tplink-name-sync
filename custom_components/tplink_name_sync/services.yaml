@@ -1,0 +1,23 @@
+set_alias:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: tplink
+    alias:
+      required: true
+      example: "Bedroom Spare Socket"
+      selector:
+        text:
+    dry_run:
+      required: false
+      selector:
+        boolean:
+
+sync_all:
+  fields:
+    dry_run:
+      required: false
+      selector:
+        boolean:
